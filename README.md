@@ -18,5 +18,5 @@ compositions for future reference (since the Spiral Abyss is constantly changing
 As a user, I want to ...
 - create any number of different teams
 - add up to four characters a team (a character can be used on different teams)
-- equip a weapon onto a character
-- equip up to two artifact sets onto a character
+- know what elemental resonance(s) is/are on a team
+- know what elemental reactions each team can produce
