@@ -16,7 +16,7 @@ compositions for future reference (since the Spiral Abyss is constantly changing
 ## User Stories
 
 As a user, I want to ...
-- create multiple different teams
-- add characters to the teams (a character can be used on different teams)
+- create any number of different teams
+- add up to four characters a team (a character can be used on different teams)
 - equip a weapon onto a character
-- equip artifact sets onto a character
+- equip up to two artifact sets onto a character
