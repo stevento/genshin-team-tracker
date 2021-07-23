@@ -1,11 +1,13 @@
-# My Personal Project
+# Genshin Impact Team Tracker
 
-## A subtitle
+## What is Genshin Impact Team Tracker?
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+<p>The Genshin Impact Team Tracker will allow the user to save up to two teams of four characters for the
+Spiral Abyss game mode. Users will be shown the possible elemental reactions and elemental resonance present within the 
+teams.<br><br> **Inspiration**: a desire to save my own teams for future reference.</p> 
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+## Who will use this?
+
+<p>Genshin Impact players who challenge the Spiral Abyss will use this application to save their previous team 
+compositions for future reference (since the Spiral Abyss is constantly changing).</p>
+
