@@ -1,6 +1,6 @@
 package model;
 
-// Represents an elemental reaction and its effect
+// Represents an elemental reaction and its effects in Genshin Impact
 public enum ElementalReaction {
     SWIRL("Deals anemo area of effect damage that spreads the swirled element"),
     CRYSTALLIZE("Creates a shield of the crystallized element"),

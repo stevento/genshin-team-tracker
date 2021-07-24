@@ -16,7 +16,7 @@ compositions for future reference (since the Spiral Abyss is constantly changing
 ## User Stories
 
 As a user, I want to ...
-- create any number of different teams
+- create and add multiple teams to a list of teams
 - add up to four characters a team (a character can be used on different teams)
 - know what elemental resonance(s) is/are on a team
 - know what elemental reactions each team can produce

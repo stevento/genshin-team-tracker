@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-// Represents a team of four characters and has elemental resonance and elemental reactions
+// Represents a team of up to four characters and has elemental resonance(s) and elemental reactions
 public class Team {
     private Set<Character> data;
     private ElementalResonance elementalResonance;
@@ -48,7 +48,7 @@ public class Team {
     }
 
     // MODIFIES: this
-    // EFFECTS: updates the team's elemental resonance based on current characters on team
+    // EFFECTS: updates the team's elemental resonance(s) based on current characters on team
     public void updateElementalResonance() {
         //stub
     }

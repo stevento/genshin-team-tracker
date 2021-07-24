@@ -1,6 +1,6 @@
 package model;
 
-// Represents an elemental resonance and its effect
+// Represents an elemental resonance and its effects in Genshin Impact
 public enum ElementalResonance {
     FERVENT_FLAMES("Affected by Cryo for 40% less time. Increases ATK by 25%"),
     SOOTHING_WATER("Affected by Pyro for 40% less time. Increases incoming healing by 30%"),

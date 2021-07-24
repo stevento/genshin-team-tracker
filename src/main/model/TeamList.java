@@ -13,7 +13,7 @@ public class TeamList {
 
     // MODIFIES: this
     // EFFECTS: create a new empty team and add it to the team list
-    public void createTeam() {
+    public void addTeam() {
         //STUB
     }
 
