@@ -9,13 +9,13 @@ import java.util.Set;
 // Represents a team of up to four characters and has elemental resonance(s) and elemental reactions
 public class Team {
     private Set<Character> data;
-    private ElementalResonance elementalResonance;
+    private HashSet<Element> elementalResonance;
     private List<ElementalReaction> elementalReactions;
 
     // EFFECTS: constructs an empty team with no resonance and no reactions
     public Team() {
         this.data = new HashSet<Character>();
-        this.elementalResonance = null;
+        this.elementalResonance = new HashSet<Element>();
         this.elementalReactions = new ArrayList<ElementalReaction>();
     }
 
@@ -24,7 +24,7 @@ public class Team {
         return this.data;
     }
 
-    public ElementalResonance getElementalResonance() {
+    public HashSet<Element> getElementalResonance() {
         return this.elementalResonance;
     }
 

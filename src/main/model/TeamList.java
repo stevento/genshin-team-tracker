@@ -11,6 +11,12 @@ public class TeamList {
         this.data = new ArrayList<Team>();
     }
 
+    // GETTERS
+    public Team getTeam(int index) {
+        //STUB
+        return new Team();
+    }
+
     // MODIFIES: this
     // EFFECTS: create a new empty team and add it to the team list
     public void addTeam() {
