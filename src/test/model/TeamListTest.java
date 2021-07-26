@@ -14,7 +14,7 @@ public class TeamListTest {
     @BeforeEach
     public void setup() {
         testTeamList = new TeamList();
-        testTeams = testTeamList.teams;
+        testTeams = testTeamList.getTeams();
     }
 
     @Test

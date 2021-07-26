@@ -5,7 +5,7 @@ import java.util.List;
 
 // Represents a list of all teams created so far
 public class TeamList {
-    List<Team> teams;
+    private List<Team> teams;
 
     // EFFECTS: constructs a new empty team list
     public TeamList() {
@@ -13,12 +13,12 @@ public class TeamList {
     }
 
     // GETTERS
-    public Team getTeam(int index) {
-        return teams.get(index);
-    }
-
     public List<Team> getTeams() {
         return teams;
+    }
+
+    public Team getTeam(int index) {
+        return teams.get(index);
     }
 
     // MODIFIES: this
