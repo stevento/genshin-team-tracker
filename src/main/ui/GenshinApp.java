@@ -21,10 +21,13 @@ public class GenshinApp {
     // displayElementalResonance.teams.getTeam(3)
 
 
+    // EFFECTS: prints to console a list of elements on team
     public void displayElements(Team team) {
         // STUB
     }
 
+    // EFFECTS: prints to console a list of elemental resonances each in the format
+    //          ElementalResonance: Effect
     public void displayElementalResonance(Team team) {
         // STUB
     }

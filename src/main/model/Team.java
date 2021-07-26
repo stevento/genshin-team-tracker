@@ -1,30 +1,28 @@
 package model;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 // Represents a team of up to four characters and has elemental resonance(s) and elemental reactions
 public class Team {
-    private Set<Character> data;
-    private HashSet<Element> elementalResonance;
+    private List<Character> data;
+    private List<ElementalResonance> elementalResonance;
     private List<ElementalReaction> elementalReactions;
 
     // EFFECTS: constructs an empty team with no resonance and no reactions
     public Team() {
-        this.data = new HashSet<Character>();
-        this.elementalResonance = new HashSet<Element>();
+        this.data = new ArrayList<Character>();
+        this.elementalResonance = new ArrayList<ElementalResonance>();
         this.elementalReactions = new ArrayList<ElementalReaction>();
     }
 
     // GETTERS
-    public Set<Character> getCharacters() {
+    public List<Character> getCharacterList() {
         return this.data;
     }
 
-    public HashSet<Element> getElementalResonance() {
+    public List<ElementalResonance> getElementalResonance() {
         return this.elementalResonance;
     }
 
@@ -36,26 +34,24 @@ public class Team {
     // REQUIRES: character is valid and exists
     // MODIFIES: this
     // EFFECTS: adds character to team
-    public void addCharacter(Character character) {
+    public boolean addCharacter(Character character) {
+        // STUB
         data.add(character);
+        return false;
     }
 
-    // REQUIRES: character is valid and exists and is already in the team
+    // REQUIRES: character is valid and exists
     // MODIFIES: this
     // EFFECTS: removes character from the team
-    public void removeCharacter(Character character) {
+    public boolean removeCharacter(Character character) {
+        // STUB
         data.remove(character);
+        return false;
     }
 
     // MODIFIES: this
     // EFFECTS: updates the team's elemental resonance(s) based on current characters on team
     public void updateElementalResonance() {
-        //stub
-    }
-
-    // MODIFIES: this
-    // EFFECTS: updates the team's elemental reactions based on current characters on team
-    public void updateElementalReactions() {
-        //stub
+        // STUB
     }
 }
