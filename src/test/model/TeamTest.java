@@ -10,13 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TeamTest {
     Team testTeam;
     List <Character> characterList;
+    List <Element> elementList;
     List <ElementalResonance> resonanceList;
 
     @BeforeEach
     public void setup() {
         testTeam = new Team();
         characterList = testTeam.getCharacterList();
-        resonanceList = testTeam.getElementalResonance();
+        elementList = testTeam.getElements();
+        resonanceList = testTeam.getElementalResonances();
     }
 
     @Test
@@ -89,51 +91,77 @@ public class TeamTest {
     }
 
     @Test
-    public void testUpdateElementalResonanceEmptyTeam() {
-        testTeam.updateElementalResonance();
+    public void testUpdateElementsEmptyTeam() {
+        testTeam.updateElements();
 
-        assertEquals(ElementalResonance.NONE, resonanceList.get(0));
+        assertEquals(Element.NONE, elementList.get(0));
     }
 
     @Test
-    public void testUpdateElementalResonanceOneCharacter() {
-        assertTrue(testTeam.addCharacter(Character.AMBER));
-        assertEquals(1, characterList.size());
-        assertEquals(Character.AMBER, characterList.get(0));
-
-        testTeam.updateElementalResonance();
-
-        assertEquals(ElementalResonance.NONE, resonanceList.get(0));
-    }
-
-    @Test
-    public void testUpdateElementalResonanceTwoCharactersNoResonance() {
+    public void testUpdateElementsNonEmptyTeam() {
         assertTrue(testTeam.addCharacter(Character.AMBER));
         assertTrue(testTeam.addCharacter(Character.CHONGYUN));
         assertEquals(2, characterList.size());
         assertEquals(Character.AMBER, characterList.get(0));
         assertEquals(Character.CHONGYUN, characterList.get(1));
 
-        testTeam.updateElementalResonance();
+        testTeam.updateElements();
 
+        assertEquals(0, elementList.size());
+        assertEquals(Element.PYRO, elementList.get(0));
+        assertEquals(Element.CRYO, elementList.get(1));
+    }
+
+    @Test
+    public void testUpdateElementalResonancesEmptyTeam() {
+        testTeam.updateElementalResonances();
+
+        assertEquals(1, resonanceList.size());
         assertEquals(ElementalResonance.NONE, resonanceList.get(0));
     }
 
     @Test
-    public void testUpdateElementalResonanceTwoCharactersResonance() {
+    public void testUpdateElementalResonancesOneCharacter() {
+        assertTrue(testTeam.addCharacter(Character.AMBER));
+        assertEquals(1, characterList.size());
+        assertEquals(Character.AMBER, characterList.get(0));
+
+        testTeam.updateElementalResonances();
+
+        assertEquals(1, resonanceList.size());
+        assertEquals(ElementalResonance.NONE, resonanceList.get(0));
+    }
+
+    @Test
+    public void testUpdateElementalResonancesTwoCharactersNoResonance() {
+        assertTrue(testTeam.addCharacter(Character.AMBER));
+        assertTrue(testTeam.addCharacter(Character.CHONGYUN));
+        assertEquals(2, characterList.size());
+        assertEquals(Character.AMBER, characterList.get(0));
+        assertEquals(Character.CHONGYUN, characterList.get(1));
+
+        testTeam.updateElementalResonances();
+
+        assertEquals(1, resonanceList.size());
+        assertEquals(ElementalResonance.NONE, resonanceList.get(0));
+    }
+
+    @Test
+    public void testUpdateElementalResonancesTwoCharactersResonance() {
         assertTrue(testTeam.addCharacter(Character.AMBER));
         assertTrue(testTeam.addCharacter(Character.DILUC));
         assertEquals(2, characterList.size());
         assertEquals(Character.AMBER, characterList.get(0));
         assertEquals(Character.DILUC, characterList.get(1));
 
-        testTeam.updateElementalResonance();
+        testTeam.updateElementalResonances();
 
+        assertEquals(1, resonanceList.size());
         assertEquals(ElementalResonance.FERVENT_FLAMES, resonanceList.get(0));
     }
 
     @Test
-    public void testUpdateElementalResonanceFourCharactersProtectiveCanopy() {
+    public void testUpdateElementalResonancesFourCharactersProtectiveCanopy() {
         assertTrue(testTeam.addCharacter(Character.AMBER));
         assertTrue(testTeam.addCharacter(Character.CHONGYUN));
         assertTrue(testTeam.addCharacter(Character.KEQING));
@@ -144,13 +172,14 @@ public class TeamTest {
         assertEquals(Character.KEQING, characterList.get(2));
         assertEquals(Character.VENTI, characterList.get(3));
 
-        testTeam.updateElementalResonance();
+        testTeam.updateElementalResonances();
 
+        assertEquals(1, resonanceList.size());
         assertEquals(ElementalResonance.PROTECTIVE_CANOPY, resonanceList.get(0));
     }
 
     @Test
-    public void testUpdateElementalResonanceFourCharactersOneResonance() {
+    public void testUpdateElementalResonancesFourCharactersOneResonance() {
         assertTrue(testTeam.addCharacter(Character.AMBER));
         assertTrue(testTeam.addCharacter(Character.CHONGYUN));
         assertTrue(testTeam.addCharacter(Character.JEAN));
@@ -161,13 +190,14 @@ public class TeamTest {
         assertEquals(Character.JEAN, characterList.get(2));
         assertEquals(Character.VENTI, characterList.get(3));
 
-        testTeam.updateElementalResonance();
+        testTeam.updateElementalResonances();
 
+        assertEquals(1, resonanceList.size());
         assertEquals(ElementalResonance.IMPETUOUS_WINDS, resonanceList.get(0));
     }
 
     @Test
-    public void testUpdateElementalResonanceFourCharactersTwoResonance() {
+    public void testUpdateElementalResonancesFourCharactersTwoResonance() {
         assertTrue(testTeam.addCharacter(Character.GANYU));
         assertTrue(testTeam.addCharacter(Character.CHONGYUN));
         assertTrue(testTeam.addCharacter(Character.KEQING));
@@ -178,8 +208,9 @@ public class TeamTest {
         assertEquals(Character.KEQING, characterList.get(2));
         assertEquals(Character.FISCHL, characterList.get(3));
 
-        testTeam.updateElementalResonance();
+        testTeam.updateElementalResonances();
 
+        assertEquals(2, resonanceList.size());
         assertEquals(ElementalResonance.IMPETUOUS_WINDS, resonanceList.get(0));
         assertEquals(ElementalResonance.HIGH_VOLTAGE, resonanceList.get(1));
     }

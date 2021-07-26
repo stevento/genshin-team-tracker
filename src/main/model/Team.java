@@ -1,19 +1,20 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 // Represents a team of up to four characters and has elemental resonance(s) and elemental reactions
 public class Team {
     private List<Character> data;
-    private List<ElementalResonance> elementalResonance;
+    private List<Element> elements;
+    private List<ElementalResonance> elementalResonances;
     private List<ElementalReaction> elementalReactions;
 
     // EFFECTS: constructs an empty team with no resonance and no reactions
     public Team() {
         this.data = new ArrayList<Character>();
-        this.elementalResonance = new ArrayList<ElementalResonance>();
+        this.elements = new ArrayList<Element>();
+        this.elementalResonances = new ArrayList<ElementalResonance>();
         this.elementalReactions = new ArrayList<ElementalReaction>();
     }
 
@@ -22,8 +23,12 @@ public class Team {
         return this.data;
     }
 
-    public List<ElementalResonance> getElementalResonance() {
-        return this.elementalResonance;
+    public List<Element> getElements() {
+        return this.elements;
+    }
+
+    public List<ElementalResonance> getElementalResonances() {
+        return this.elementalResonances;
     }
 
     public List<ElementalReaction> getElementalReactions() {
@@ -49,9 +54,16 @@ public class Team {
         return false;
     }
 
+    // REQUIRES:
+    // MODIFIES: this
+    // EFFECTS: updates the team's element list
+    public void updateElements() {
+        // STUB
+    }
+
     // MODIFIES: this
     // EFFECTS: updates the team's elemental resonance(s) based on current characters on team
-    public void updateElementalResonance() {
+    public void updateElementalResonances() {
         // STUB
     }
 }

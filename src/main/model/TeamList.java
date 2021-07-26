@@ -6,6 +6,8 @@ import java.util.List;
 // Represents a list of all teams created so far
 public class TeamList {
     List<Team> data;
+    List<List<ElementalResonance>> resonances;
+    List<List<Element>> elements;
 
     public TeamList() {
         this.data = new ArrayList<Team>();
