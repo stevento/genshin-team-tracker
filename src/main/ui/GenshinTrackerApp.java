@@ -6,6 +6,9 @@ import model.Character;
 import java.util.List;
 import java.util.Scanner;
 
+// UI Functionality and methods are implemented/inspired from Teller App from UBC CPSC 210. Link below:
+// https://github.students.cs.ubc.ca/CPSC210/TellerApp
+// ===================================================
 // Genshin Team Tracker Application
 public class GenshinTrackerApp {
     private TeamList teams;
@@ -15,9 +18,6 @@ public class GenshinTrackerApp {
         runGenshinTrackerApp();
     }
 
-    // SOURCE CODE: TellerApp sample project from UBC CPSC 210 course
-    // SOURCE LINK: https://github.students.cs.ubc.ca/CPSC210/TellerApp
-    // ================================================================
     // MODIFIES: this
     // EFFECTS: processes user input
     private void runGenshinTrackerApp() {
@@ -41,9 +41,6 @@ public class GenshinTrackerApp {
         System.out.println("\nGoodbye!");
     }
 
-    // SOURCE CODE: TellerApp sample project from UBC CPSC 210 course
-    // SOURCE LINK: https://github.students.cs.ubc.ca/CPSC210/TellerApp
-    // ================================================================
     // MODIFIES: this
     // EFFECTS: processes user command at the team list level
     private void processTeamListCommand(String command) {
@@ -70,9 +67,6 @@ public class GenshinTrackerApp {
         }
     }
 
-    // SOURCE CODE: TellerApp sample project from UBC CPSC 210 course
-    // SOURCE LINK: https://github.students.cs.ubc.ca/CPSC210/TellerApp
-    // ================================================================
     // MODIFIES: this
     // EFFECTS: initializes team list
     private void init() {
@@ -80,9 +74,6 @@ public class GenshinTrackerApp {
         input = new Scanner(System.in);
     }
 
-    // SOURCE CODE: TellerApp sample project from UBC CPSC 210 course
-    // SOURCE LINK: https://github.students.cs.ubc.ca/CPSC210/TellerApp
-    // ================================================================
     // EFFECTS: displays menu of options to user for team list management
     private void displayTeamListMenu() {
         System.out.println("\nSelect from:");
