@@ -72,7 +72,7 @@ public class Team {
         if (!hasDuplicateElements) {
             if (characters.size() < 4) {
                 return;
-            } else if (characters.size() == 4) {
+            } else if (characters.size() >= 4) {
                 elementalResonances.add(ElementalResonance.PROTECTIVE_CANOPY);
             }
         } else {
