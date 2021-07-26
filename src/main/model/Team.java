@@ -69,10 +69,12 @@ public class Team {
     public void updateElementalResonances() {
         updateElements();
         boolean hasDuplicateElements = hasDuplicateElements();
-        if (!hasDuplicateElements && characters.size() < 4) {
-            return;
-        } else if (!hasDuplicateElements && characters.size() == 4) {
-            elementalResonances.add(ElementalResonance.PROTECTIVE_CANOPY);
+        if (!hasDuplicateElements) {
+            if (characters.size() < 4) {
+                return;
+            } else if (characters.size() == 4) {
+                elementalResonances.add(ElementalResonance.PROTECTIVE_CANOPY);
+            }
         } else {
             for (Element e : Element.values()) {
                 int count = 0;
