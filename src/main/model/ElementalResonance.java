@@ -10,11 +10,10 @@ public enum ElementalResonance {
             + "that are Frozen or affected by Cyro by 15%"),
     IMPETUOUS_WINDS(Element.ANEMO, "Decreases Stamina consumption by 15%. Increases Movement SPD by 10%. "
             + "Shortens Skill CD by 5%"),
-    ENDURING_ROCK(Element.GEO, "Increases shield strength by 15%. Additionally, characters protected by a shield will have "
-            + "the following special characteristics: DMG dealt increased by 15%, dealing DMG to enemies will decrease "
-            + "their Geo RES by 20% for 15s."),
-    PROTECTIVE_CANOPY(Element.NONE,"All Elemental RES +15%, Physical RES +15%."),
-    NONE(Element.NONE, "No effect");
+    ENDURING_ROCK(Element.GEO, "Increases shield strength by 15%. Additionally, characters protected by a "
+            + "shield will have the following special characteristics: DMG dealt increased by 15%, dealing DMG to "
+            + "enemies will decrease their Geo RES by 20% for 15s."),
+    PROTECTIVE_CANOPY(Element.NONE,"All Elemental RES +15%, Physical RES +15%.");
 
     private Element element;
     private String effect;
@@ -23,5 +22,10 @@ public enum ElementalResonance {
     ElementalResonance(Element element, String effect) {
         this.element = element;
         this.effect = effect;
+    }
+
+    // GETTERS
+    public Element getElement() {
+        return this.element;
     }
 }

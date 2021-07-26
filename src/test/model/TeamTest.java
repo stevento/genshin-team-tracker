@@ -94,11 +94,11 @@ public class TeamTest {
     public void testUpdateElementsEmptyTeam() {
         testTeam.updateElements();
 
-        assertEquals(Element.NONE, elementList.get(0));
+        assertEquals(0, elementList.size());
     }
 
     @Test
-    public void testUpdateElementsNonEmptyTeam() {
+    public void testUpdateElementsEmptyInitial() {
         assertTrue(testTeam.addCharacter(Character.AMBER));
         assertTrue(testTeam.addCharacter(Character.CHONGYUN));
         assertEquals(2, characterList.size());
@@ -107,17 +107,55 @@ public class TeamTest {
 
         testTeam.updateElements();
 
-        assertEquals(0, elementList.size());
+        assertEquals(2, elementList.size());
         assertEquals(Element.PYRO, elementList.get(0));
         assertEquals(Element.CRYO, elementList.get(1));
+    }
+
+    @Test
+    public void testUpdateElementsFullInitial() {
+        assertTrue(testTeam.addCharacter(Character.AMBER));
+        assertTrue(testTeam.addCharacter(Character.CHONGYUN));
+        assertTrue(testTeam.addCharacter(Character.VENTI));
+        assertTrue(testTeam.addCharacter(Character.JEAN));
+        assertEquals(4, characterList.size());
+        assertEquals(Character.AMBER, characterList.get(0));
+        assertEquals(Character.CHONGYUN, characterList.get(1));
+        assertEquals(Character.VENTI, characterList.get(2));
+        assertEquals(Character.JEAN, characterList.get(3));
+
+        testTeam.updateElements();
+
+        assertEquals(4, elementList.size());
+        assertEquals(Element.PYRO, elementList.get(0));
+        assertEquals(Element.CRYO, elementList.get(1));
+        assertEquals(Element.ANEMO, elementList.get(2));
+        assertEquals(Element.ANEMO, elementList.get(3));
+
+        assertTrue(testTeam.removeCharacter(Character.AMBER));
+        assertTrue(testTeam.removeCharacter(Character.CHONGYUN));
+        assertTrue(testTeam.removeCharacter(Character.JEAN));
+        assertTrue(testTeam.removeCharacter(Character.VENTI));
+        assertEquals(0, characterList.size());
+
+        assertTrue(testTeam.addCharacter(Character.KEQING));
+        assertTrue(testTeam.addCharacter(Character.FISCHL));
+        assertEquals(2, characterList.size());
+        assertEquals(Character.KEQING, characterList.get(0));
+        assertEquals(Character.FISCHL, characterList.get(1));
+
+        testTeam.updateElements();
+
+        assertEquals(2, elementList.size());
+        assertEquals(Element.ELECTRO, elementList.get(0));
+        assertEquals(Element.ELECTRO, elementList.get(1));
     }
 
     @Test
     public void testUpdateElementalResonancesEmptyTeam() {
         testTeam.updateElementalResonances();
 
-        assertEquals(1, resonanceList.size());
-        assertEquals(ElementalResonance.NONE, resonanceList.get(0));
+        assertEquals(0, resonanceList.size());
     }
 
     @Test
@@ -128,8 +166,7 @@ public class TeamTest {
 
         testTeam.updateElementalResonances();
 
-        assertEquals(1, resonanceList.size());
-        assertEquals(ElementalResonance.NONE, resonanceList.get(0));
+        assertEquals(0, resonanceList.size());
     }
 
     @Test
@@ -142,8 +179,7 @@ public class TeamTest {
 
         testTeam.updateElementalResonances();
 
-        assertEquals(1, resonanceList.size());
-        assertEquals(ElementalResonance.NONE, resonanceList.get(0));
+        assertEquals(0, resonanceList.size());
     }
 
     @Test
@@ -211,7 +247,57 @@ public class TeamTest {
         testTeam.updateElementalResonances();
 
         assertEquals(2, resonanceList.size());
-        assertEquals(ElementalResonance.IMPETUOUS_WINDS, resonanceList.get(0));
+        assertEquals(ElementalResonance.SHATTERING_ICE, resonanceList.get(0));
         assertEquals(ElementalResonance.HIGH_VOLTAGE, resonanceList.get(1));
+    }
+
+    @Test
+    public void testHasDuplicateElementsFalse() {
+        assertTrue(testTeam.addCharacter(Character.AMBER));
+        assertTrue(testTeam.addCharacter(Character.CHONGYUN));
+        assertTrue(testTeam.addCharacter(Character.KEQING));
+        assertTrue(testTeam.addCharacter(Character.VENTI));
+        assertEquals(4, characterList.size());
+        assertEquals(Character.AMBER, characterList.get(0));
+        assertEquals(Character.CHONGYUN, characterList.get(1));
+        assertEquals(Character.KEQING, characterList.get(2));
+        assertEquals(Character.VENTI, characterList.get(3));
+
+        testTeam.updateElements();
+
+        assertFalse(testTeam.hasDuplicateElements());
+    }
+
+    @Test
+    public void testHasDuplicateElementsTrueTwoDuplicates() {
+        assertTrue(testTeam.addCharacter(Character.AMBER));
+        assertTrue(testTeam.addCharacter(Character.CHONGYUN));
+        assertTrue(testTeam.addCharacter(Character.JEAN));
+        assertTrue(testTeam.addCharacter(Character.VENTI));
+        assertEquals(4, characterList.size());
+        assertEquals(Character.AMBER, characterList.get(0));
+        assertEquals(Character.CHONGYUN, characterList.get(1));
+        assertEquals(Character.JEAN, characterList.get(2));
+
+        testTeam.updateElements();
+
+        assertTrue(testTeam.hasDuplicateElements());
+    }
+
+    @Test
+    public void testHasDuplicateElementsTrueMoreThanTwoDuplicates() {
+        assertTrue(testTeam.addCharacter(Character.AMBER));
+        assertTrue(testTeam.addCharacter(Character.SUCROSE));
+        assertTrue(testTeam.addCharacter(Character.JEAN));
+        assertTrue(testTeam.addCharacter(Character.VENTI));
+        assertEquals(4, characterList.size());
+        assertEquals(Character.AMBER, characterList.get(0));
+        assertEquals(Character.SUCROSE, characterList.get(1));
+        assertEquals(Character.JEAN, characterList.get(2));
+        assertEquals(Character.VENTI, characterList.get(3));
+
+        testTeam.updateElements();
+
+        assertTrue(testTeam.hasDuplicateElements());
     }
 }

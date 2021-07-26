@@ -54,19 +54,7 @@ public enum Character {
     }
 
     // GETTERS
-    public String getName() {
-        return this.name;
-    }
-
     public Element getElement() {
         return this.element;
-    }
-
-    public WeaponType getWeaponType() {
-        return this.weaponType;
-    }
-
-    public int getRarity() {
-        return rarity;
     }
 }

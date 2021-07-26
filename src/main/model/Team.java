@@ -5,22 +5,20 @@ import java.util.List;
 
 // Represents a team of up to four characters and has elemental resonance(s) and elemental reactions
 public class Team {
-    private List<Character> data;
+    private List<Character> characters;
     private List<Element> elements;
     private List<ElementalResonance> elementalResonances;
-    private List<ElementalReaction> elementalReactions;
 
     // EFFECTS: constructs an empty team with no resonance and no reactions
     public Team() {
-        this.data = new ArrayList<Character>();
+        this.characters = new ArrayList<Character>();
         this.elements = new ArrayList<Element>();
         this.elementalResonances = new ArrayList<ElementalResonance>();
-        this.elementalReactions = new ArrayList<ElementalReaction>();
     }
 
     // GETTERS
     public List<Character> getCharacterList() {
-        return this.data;
+        return this.characters;
     }
 
     public List<Element> getElements() {
@@ -31,39 +29,78 @@ public class Team {
         return this.elementalResonances;
     }
 
-    public List<ElementalReaction> getElementalReactions() {
-        return this.elementalReactions;
-    }
-
 
     // REQUIRES: character is valid and exists
     // MODIFIES: this
-    // EFFECTS: adds character to team
+    // EFFECTS: adds character to team; returns true on success; false otherwise
+    //          teams cannot have duplicate characters and have a max size of 4
     public boolean addCharacter(Character character) {
-        // STUB
-        data.add(character);
-        return false;
+        if (!(characters.contains(character)) && characters.size() < 4) {
+            characters.add(character);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // REQUIRES: character is valid and exists
     // MODIFIES: this
-    // EFFECTS: removes character from the team
+    // EFFECTS: removes character from the team; returns true on success; false otherwise
     public boolean removeCharacter(Character character) {
-        // STUB
-        data.remove(character);
-        return false;
+        if (characters.size() == 0 || !(characters.contains(character))) {
+            return false;
+        } else {
+            characters.remove(character);
+            return true;
+        }
     }
 
-    // REQUIRES:
     // MODIFIES: this
     // EFFECTS: updates the team's element list
     public void updateElements() {
-        // STUB
+        elements.clear();
+        for (Character c : characters) {
+            elements.add(c.getElement());
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: updates the team's elemental resonance(s) based on current characters on team
     public void updateElementalResonances() {
-        // STUB
+        updateElements();
+        boolean hasDuplicateElements = hasDuplicateElements();
+        if (!hasDuplicateElements && characters.size() < 4) {
+            return;
+        } else if (!hasDuplicateElements && characters.size() == 4) {
+            elementalResonances.add(ElementalResonance.PROTECTIVE_CANOPY);
+        } else {
+            for (Element e : Element.values()) {
+                int count = 0;
+                for (Element currentElement : elements) {
+                    if (e == currentElement) {
+                        count++;
+                    }
+                }
+                if (count >= 2) {
+                    elementalResonances.add(e.toElementalResonance());
+                }
+            }
+        }
+    }
+
+    // EFFECTS: returns true if this.elements contains duplicates; false otherwise
+    public boolean hasDuplicateElements() {
+        for (Element e : Element.values()) {
+            int count = 0;
+            for (Element currentElement : elements) {
+                if (e == currentElement) {
+                    count++;
+                }
+            }
+            if (count >= 2) {
+                return true;
+            }
+        }
+        return false;
     }
 }
