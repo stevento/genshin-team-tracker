@@ -18,7 +18,7 @@ public enum ElementalResonance {
     private Element element;
     private String effect;
 
-    // constructs an elemental resonance including its effect
+    // EFFECTS: constructs an elemental resonance including its effect
     ElementalResonance(Element element, String effect) {
         this.element = element;
         this.effect = effect;

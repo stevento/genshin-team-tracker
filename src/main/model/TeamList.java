@@ -6,29 +6,31 @@ import java.util.List;
 // Represents a list of all teams created so far
 public class TeamList {
     List<Team> teams;
-    List<List<ElementalResonance>> resonances;
-    List<List<Element>> elements;
 
+    // EFFECTS: constructs a new empty team list
     public TeamList() {
         this.teams = new ArrayList<Team>();
     }
 
     // GETTERS
     public Team getTeam(int index) {
-        //STUB
-        return new Team();
+        return teams.get(index);
     }
 
     // MODIFIES: this
     // EFFECTS: create a new empty team and add it to the team list
     public void addTeam() {
-        //STUB
+        teams.add(new Team());
     }
 
-    // REQUIRES: team exists already
     // MODIFIES: this
-    // EFFECTS: removes team at index
-    public void removeTeam(int index) {
-        //STUB
+    // EFFECTS: removes team at index; return true for success; false otherwise
+    public boolean removeTeam(int index) {
+        if (index > teams.size() - 1 || index < 0) {
+            return false;
+        } else {
+            teams.remove(index);
+            return true;
+        }
     }
 }

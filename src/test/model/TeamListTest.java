@@ -3,32 +3,55 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class TeamListTest {
-    TeamList testTeams;
-    Team testTeam1;
-    Team testTeam2;
-    Team testTeam3;
+    TeamList testTeamList;
+    List<Team> testTeams;
 
     @BeforeEach
     public void setup() {
-        testTeams = new TeamList();
-        testTeam1 = new Team();
-        testTeam2 = new Team();
-        testTeam3 = new Team();
+        testTeamList = new TeamList();
+        testTeams = testTeamList.teams;
     }
 
     @Test
-    public void testAddTeam() {
+    public void testAddTeamSingle() {
+        testTeamList.addTeam();
 
+        assertEquals(1, testTeams.size());
     }
 
     @Test
-    public void testAddMTeamMultiple() {
+    public void testAddTeamMultiple() {
+        testTeamList.addTeam();
+        testTeamList.addTeam();
 
+        assertEquals(2, testTeams.size());
     }
 
     @Test
-    public void testRemoveTeam() {
+    public void testRemoveTeamSuccess() {
+        testTeamList.addTeam();
+        testTeamList.addTeam();
+        assertEquals(2, testTeams.size());
 
+        assertTrue(testTeamList.removeTeam(0));
+
+        assertEquals(1, testTeams.size());
+    }
+
+    @Test
+    public void testRemoveTeamFailure() {
+        testTeamList.addTeam();
+        testTeamList.addTeam();
+        assertEquals(2, testTeams.size());
+
+        assertFalse(testTeamList.removeTeam(2));
+        assertFalse(testTeamList.removeTeam(-1));
+
+        assertEquals(2, testTeams.size());
     }
 }
