@@ -13,7 +13,7 @@ public enum ElementalResonance {
     ENDURING_ROCK(Element.GEO, "Increases shield strength by 15%. Additionally, characters protected by a "
             + "shield will have the following special characteristics: DMG dealt increased by 15%, dealing DMG to "
             + "enemies will decrease their Geo RES by 20% for 15s."),
-    PROTECTIVE_CANOPY(Element.NONE,"All Elemental RES +15%, Physical RES +15%.");
+    PROTECTIVE_CANOPY(Element.NULL,"All Elemental RES +15%, Physical RES +15%.");
 
     private Element element;
     private String effect;
