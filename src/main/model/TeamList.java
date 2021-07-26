@@ -17,10 +17,6 @@ public class TeamList {
         return teams;
     }
 
-    public Team getTeam(int index) {
-        return teams.get(index);
-    }
-
     // MODIFIES: this
     // EFFECTS: create a new empty team and add it to the team list
     public void addTeam() {

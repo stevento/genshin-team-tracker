@@ -146,7 +146,7 @@ public class GenshinTrackerApp {
     // MODIFIES: this
     // EFFECTS: processes user command at the team level
     private void processTeamCommand(String command, int index) {
-        Team currentTeam = teams.getTeam(index);
+        Team currentTeam = teams.getTeams().get(index);
         if (command.equals("ac")) {
             askUserForCharacter();
             command = input.next();
