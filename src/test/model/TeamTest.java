@@ -16,7 +16,7 @@ public class TeamTest {
     @BeforeEach
     public void setup() {
         testTeam = new Team();
-        characterList = testTeam.getCharacterList();
+        characterList = testTeam.getCharacters();
         elementList = testTeam.getElements();
         resonanceList = testTeam.getElementalResonances();
     }

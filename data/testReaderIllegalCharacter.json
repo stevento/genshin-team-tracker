@@ -1,0 +1,9 @@
+{
+  "teams": [
+    {
+      "characters": ["KEQING", "SPIDERMAN", "ZHONGLI", "VENTI"],
+      "elements": ["ELECTRO", "CRYO", "GEO", "ANEMO"],
+      "elemental resonance(s)": ["PROTECTIVE_CANOPY"]
+    }
+  ]
+}

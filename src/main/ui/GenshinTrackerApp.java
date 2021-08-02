@@ -45,7 +45,7 @@ public class GenshinTrackerApp {
     // EFFECTS: processes user command at the team list level
     private void processTeamListCommand(String command) {
         if (command.equals("at")) {
-            teams.addTeam();
+            teams.newTeam();
             System.out.println("New team was added at index " + (teams.getTeams().size() - 1));
         } else if (command.equals("rt")) {
             askUserForIndex();
@@ -95,7 +95,7 @@ public class GenshinTrackerApp {
         int count = 0;
         for (Team t : teams.getTeams()) {
             System.out.println("Team at Index " + count + ": ");
-            for (Character c : t.getCharacterList()) {
+            for (Character c : t.getCharacters()) {
                 System.out.println(c.name());
             }
             count++;
@@ -178,7 +178,7 @@ public class GenshinTrackerApp {
     // EFFECTS: attempts to add character to currentTeam and prints success or failure message
     private void displayAddCharacterResult(String command, Team currentTeam) {
         if (currentTeam.addCharacter(Character.valueOf(command))) {
-            System.out.println("\nCharacter was added at index " + (currentTeam.getCharacterList().size() - 1));
+            System.out.println("\nCharacter was added at index " + (currentTeam.getCharacters().size() - 1));
         } else {
             System.out.println("\nCharacter was not added");
         }

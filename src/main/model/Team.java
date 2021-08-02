@@ -17,7 +17,7 @@ public class Team {
     }
 
     // GETTERS
-    public List<Character> getCharacterList() {
+    public List<Character> getCharacters() {
         return this.characters;
     }
 
@@ -28,7 +28,6 @@ public class Team {
     public List<ElementalResonance> getElementalResonances() {
         return this.elementalResonances;
     }
-
 
     // REQUIRES: character is valid and exists
     // MODIFIES: this

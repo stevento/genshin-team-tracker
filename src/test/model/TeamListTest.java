@@ -18,24 +18,24 @@ public class TeamListTest {
     }
 
     @Test
-    public void testAddTeamSingle() {
-        testTeamList.addTeam();
+    public void testNewTeamSingle() {
+        testTeamList.newTeam();
 
         assertEquals(1, testTeams.size());
     }
 
     @Test
-    public void testAddTeamMultiple() {
-        testTeamList.addTeam();
-        testTeamList.addTeam();
+    public void testNewTeamMultiple() {
+        testTeamList.newTeam();
+        testTeamList.newTeam();
 
         assertEquals(2, testTeams.size());
     }
 
     @Test
     public void testRemoveTeamSuccess() {
-        testTeamList.addTeam();
-        testTeamList.addTeam();
+        testTeamList.newTeam();
+        testTeamList.newTeam();
         assertEquals(2, testTeams.size());
 
         assertTrue(testTeamList.removeTeam(0));
@@ -45,13 +45,30 @@ public class TeamListTest {
 
     @Test
     public void testRemoveTeamFailure() {
-        testTeamList.addTeam();
-        testTeamList.addTeam();
+        testTeamList.newTeam();
+        testTeamList.newTeam();
         assertEquals(2, testTeams.size());
 
         assertFalse(testTeamList.removeTeam(2));
         assertFalse(testTeamList.removeTeam(-1));
 
         assertEquals(2, testTeams.size());
+    }
+
+    @Test
+    public void testAddTeam() {
+        Team testTeam = new Team();
+        assertEquals(0, testTeams.size());
+        testTeamList.addTeam(testTeam);
+        assertEquals(1, testTeams.size());
+    }
+
+    @Test
+    public void testNumTeams() {
+        assertEquals(0, testTeamList.numTeams());
+        testTeamList.newTeam();
+        assertEquals(1, testTeamList.numTeams());
+        testTeamList.newTeam();
+        assertEquals(2, testTeamList.numTeams());
     }
 }

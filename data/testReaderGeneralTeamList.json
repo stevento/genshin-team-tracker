@@ -1,0 +1,14 @@
+{
+  "teams": [
+    {
+      "characters": ["KEQING", "AYAKA", "ZHONGLI", "VENTI"],
+      "elements": ["ELECTRO", "CRYO", "GEO", "ANEMO"],
+      "elemental resonance(s)": ["PROTECTIVE_CANOPY"]
+    },
+    {
+      "characters": ["NOELLE", "JEAN", "ZHONGLI", "VENTI"],
+      "elements": ["GEO", "ANEMO", "GEO", "ANEMO"],
+      "elemental resonance(s)": ["ENDURING_ROCK", "IMPETUOUS WINDS"]
+    }
+  ]
+}

@@ -19,8 +19,14 @@ public class TeamList {
 
     // MODIFIES: this
     // EFFECTS: create a new empty team and add it to the team list
-    public void addTeam() {
+    public void newTeam() {
         teams.add(new Team());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds team to team list
+    public void addTeam(Team t) {
+        teams.add(t);
     }
 
     // MODIFIES: this
@@ -33,4 +39,10 @@ public class TeamList {
             return true;
         }
     }
+
+    // EFFECTS: returns number of teams
+    public int numTeams() {
+        return teams.size();
+    }
+
 }
