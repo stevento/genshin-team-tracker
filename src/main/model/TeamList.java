@@ -49,6 +49,7 @@ public class TeamList implements Writable {
         return teams.size();
     }
 
+    // EFFECTS: returns JSON representation of this
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

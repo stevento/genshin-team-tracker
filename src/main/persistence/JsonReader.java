@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Iterator;
-import java.util.List;
 import java.util.stream.Stream;
 
 import model.Character;
@@ -62,7 +60,7 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
+    // MODIFIES: tl
     // EFFECTS: parses team from JSON object and adds it to team list
     private void addTeam(TeamList tl, JSONObject jsonObject) throws IllegalCharacterException {
         Team team = new Team();

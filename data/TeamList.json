@@ -1,4 +1,6 @@
-{"teams": [{
+{
+  "teams": [
+    {
     "characters": [
         "KEQING",
         "AYAKA",
@@ -7,4 +9,6 @@
     ],
     "elemental resonance(s)": [],
     "elements": []
-}]}
+    }
+  ]
+}
