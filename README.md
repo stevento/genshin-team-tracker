@@ -20,4 +20,6 @@ As a user, I want to ...
 - add up to four characters a team (a character can be used on different teams)
 - know what elements are on each team  
 - know what elemental resonance(s) is/are on each teams
+- be able to save my list of teams to file
+- be able to load my list of teams from file
 
