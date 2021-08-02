@@ -14,6 +14,9 @@ import java.util.stream.Stream;
 import model.Character;
 import org.json.*;
 
+// Copied from JsonSerializationDemo from UBC CPSC 210. Link below:
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+// ===================================================================
 // Represents a reader that reads team list from JSON data stored in file
 public class JsonReader {
     private String source;

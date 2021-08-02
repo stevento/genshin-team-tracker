@@ -1,8 +1,11 @@
 package ui;
 
+import exceptions.IllegalCharacterException;
 import model.*;
 import model.Character;
+import persistence.JsonReader;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,10 +14,13 @@ import java.util.Scanner;
 // ===================================================
 // Genshin Team Tracker Application
 public class GenshinTrackerApp {
+    private static final String JSON_STORE = "./data/testReaderGeneralTeamList.json";
     private TeamList teams;
     private Scanner input;
+    private JsonReader jsonReader;
 
     public GenshinTrackerApp() {
+        jsonReader = new JsonReader(JSON_STORE);
         runGenshinTrackerApp();
     }
 
@@ -52,19 +58,29 @@ public class GenshinTrackerApp {
             command = input.next();
             command = command.toLowerCase();
             teams.removeTeam(Integer.parseInt(command));
+        } else if (command.equals("dt")) {
+            displayTeams();
         } else if (command.equals("de")) {
             displayAllTeamElements();
         } else if (command.equals("dr")) {
             displayAllTeamElementalResonance();
         } else if (command.equals("mt")) {
-            displayTeams();
-            askUserForIndex();
-            command = input.next();
-            command = command.toLowerCase();
-            manageTeam(Integer.parseInt(command), command);
+            manageTeams();
+        } else if (command.equals("l")) {
+            loadTeamList();
         } else {
             System.out.println("Selection not valid...");
         }
+    }
+
+    // EFFECTS: displays team management menu and asks user for desired team index
+    private void manageTeams() {
+        String command;
+        displayTeams();
+        askUserForIndex();
+        command = input.next();
+        command = command.toLowerCase();
+        manageTeam(Integer.parseInt(command), command);
     }
 
     // MODIFIES: this
@@ -79,9 +95,11 @@ public class GenshinTrackerApp {
         System.out.println("\nSelect from:");
         System.out.println("\tat -> create and add an empty team");
         System.out.println("\trt -> remove a team");
+        System.out.println("\tdt -> display teams");
         System.out.println("\tde -> display all teams' elements");
         System.out.println("\tdr -> display all teams' resonance(s)");
         System.out.println("\tmt -> manage a team");
+        System.out.println("\tl -> load teams from file");
         System.out.println("\tq -> quit");
     }
 
@@ -216,5 +234,21 @@ public class GenshinTrackerApp {
             }
         }
         System.out.println("\n");
+    }
+
+    // Copied from JsonSerializationDemo from UBC CPSC 210. Link below:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // ===================================================================
+    // MODIFIES: this
+    // EFFECTS: loads team list from file
+    private void loadTeamList() {
+        try {
+            teams = jsonReader.read();
+            System.out.println("Loaded teams from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        } catch (IllegalCharacterException e) {
+            System.out.println("Invalid character was read from file: " + JSON_STORE);
+        }
     }
 }
