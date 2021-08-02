@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a team of up to four characters and has elemental resonance(s) and elemental reactions
-public class Team {
+public class Team implements Writable {
     private List<Character> characters;
     private List<Element> elements;
     private List<ElementalResonance> elementalResonances;
@@ -103,5 +106,15 @@ public class Team {
             }
         }
         return false;
+    }
+
+    // EFFECTS: returns JSONObject representation of this
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("characters", characters);
+        json.put("elements", elements);
+        json.put("elemental resonance(s)", elementalResonances);
+        return json;
     }
 }

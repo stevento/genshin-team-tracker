@@ -1,10 +1,14 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a list of all teams created so far
-public class TeamList {
+public class TeamList implements Writable {
     private List<Team> teams;
 
     // EFFECTS: constructs a new empty team list
@@ -43,6 +47,22 @@ public class TeamList {
     // EFFECTS: returns number of teams
     public int numTeams() {
         return teams.size();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("teams", teamsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns teams in team list as a JSON array
+    public JSONArray teamsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Team t : teams) {
+            jsonArray.put(t.toJson());
+        }
+        return jsonArray;
     }
 
 }

@@ -4,7 +4,10 @@ import exceptions.IllegalCharacterException;
 import model.*;
 import model.Character;
 import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -14,13 +17,15 @@ import java.util.Scanner;
 // ===================================================
 // Genshin Team Tracker Application
 public class GenshinTrackerApp {
-    private static final String JSON_STORE = "./data/testReaderGeneralTeamList.json";
+    private static final String JSON_STORE = "./data/TeamList.json";
     private TeamList teams;
     private Scanner input;
     private JsonReader jsonReader;
+    private JsonWriter jsonWriter;
 
     public GenshinTrackerApp() {
         jsonReader = new JsonReader(JSON_STORE);
+        jsonWriter = new JsonWriter(JSON_STORE);
         runGenshinTrackerApp();
     }
 
@@ -68,6 +73,8 @@ public class GenshinTrackerApp {
             manageTeams();
         } else if (command.equals("l")) {
             loadTeamList();
+        } else if (command.equals("s")) {
+            saveTeamList();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -100,6 +107,7 @@ public class GenshinTrackerApp {
         System.out.println("\tdr -> display all teams' resonance(s)");
         System.out.println("\tmt -> manage a team");
         System.out.println("\tl -> load teams from file");
+        System.out.println("\ts -> save teams to file");
         System.out.println("\tq -> quit");
     }
 
@@ -249,6 +257,21 @@ public class GenshinTrackerApp {
             System.out.println("Unable to read from file: " + JSON_STORE);
         } catch (IllegalCharacterException e) {
             System.out.println("Invalid character was read from file: " + JSON_STORE);
+        }
+    }
+
+    // Copied from JsonSerializationDemo from UBC CPSC 210. Link below:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
+    // ===================================================================
+    // EFFECTS: saves team list to file
+    private void saveTeamList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(teams);
+            jsonWriter.close();
+            System.out.println("Saved teams to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 }
