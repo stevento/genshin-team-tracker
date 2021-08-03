@@ -1,14 +1,11 @@
-{
-  "teams": [
-    {
+{"teams": [{
     "characters": [
-        "KEQING",
-        "AYAKA",
-        "ZHONGLI",
-        "VENTI"
+        "YANFEI",
+        "DILUC"
     ],
-    "elemental resonance(s)": [],
-    "elements": []
-    }
-  ]
-}
+    "elemental resonance(s)": ["FERVENT_FLAMES"],
+    "elements": [
+        "PYRO",
+        "PYRO"
+    ]
+}]}

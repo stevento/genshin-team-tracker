@@ -132,7 +132,6 @@ public class GenshinTrackerApp {
     public void displayAllTeamElements() {
         for (Team t : teams.getTeams()) {
             displayTeamElements(t);
-            System.out.println("\n");
         }
     }
 
@@ -140,7 +139,6 @@ public class GenshinTrackerApp {
     public void displayAllTeamElementalResonance() {
         for (Team t : teams.getTeams()) {
             displayTeamElementalResonance(t);
-            System.out.println("\n");
         }
     }
 
