@@ -84,6 +84,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         setVisible(true);
     }
 
+    // MODIFIES: this
     // EFFECTS: Sets up a JPanel to display teams
     private void setupTeamPanel(JScrollPane listScrollPane) {
         teamPanel = new JPanel();
@@ -93,6 +94,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         teamPanel.add(new JSeparator(SwingConstants.VERTICAL));
     }
 
+    // MODIFIES: this
     // EFFECTS: Sets up a menu bar with buttons
     private void setupMenuBar() {
         menuBar = new JMenuBar();
@@ -104,6 +106,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         menuBar.setBackground(Color.GRAY);
     }
 
+    // MODIFIES: this
     // EFFECTS: Instantiates buttons
     private void setupButtons() {
         addTeamButton = new AddTeamButton();
@@ -112,6 +115,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         saveDataButton = new SaveDataButton();
     }
 
+    // MODIFIES: this
     // EFFECTS: Sets up audio clip
     private void setupAudio() {
         File file = new File(SOUND_NAME);
@@ -124,6 +128,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: Sets up team lists
     private void makeJList() {
         listModel = new DefaultListModel<>();
@@ -136,6 +141,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         list.setVisibleRowCount(-1);
     }
 
+    // MODIFIES: this
     // EFFECTS: Updates the teams within listModel
     public void updateTeams() {
         listModel.clear();

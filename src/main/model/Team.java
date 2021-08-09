@@ -80,18 +80,24 @@ public class Team implements Writable {
                 }
             }
         } else {
-            for (Element e : Element.values()) {
-                int count = 0;
-                for (Element currentElement : elements) {
-                    if (e == currentElement) {
-                        count++;
-                    }
+            matchElementalResonances();
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: finds and updates the correct elemental resonance corresponding to team's elements
+    private void matchElementalResonances() {
+        for (Element e : Element.values()) {
+            int count = 0;
+            for (Element currentElement : elements) {
+                if (e == currentElement) {
+                    count++;
                 }
-                if (count >= 2) {
-                    ElementalResonance elementalResonanceToAdd = e.toElementalResonance();
-                    if (!elementalResonances.contains(elementalResonanceToAdd)) {
-                        elementalResonances.add(elementalResonanceToAdd);
-                    }
+            }
+            if (count >= 2) {
+                ElementalResonance elementalResonanceToAdd = e.toElementalResonance();
+                if (!elementalResonances.contains(elementalResonanceToAdd)) {
+                    elementalResonances.add(elementalResonanceToAdd);
                 }
             }
         }
