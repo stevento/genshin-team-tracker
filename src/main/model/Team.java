@@ -75,7 +75,9 @@ public class Team implements Writable {
             if (characters.size() < 4) {
                 return;
             } else {
-                elementalResonances.add(ElementalResonance.PROTECTIVE_CANOPY);
+                if (!elementalResonances.contains(ElementalResonance.PROTECTIVE_CANOPY)) {
+                    elementalResonances.add(ElementalResonance.PROTECTIVE_CANOPY);
+                }
             }
         } else {
             for (Element e : Element.values()) {
@@ -86,7 +88,10 @@ public class Team implements Writable {
                     }
                 }
                 if (count >= 2) {
-                    elementalResonances.add(e.toElementalResonance());
+                    ElementalResonance elementalResonanceToAdd = e.toElementalResonance();
+                    if (!elementalResonances.contains(elementalResonanceToAdd)) {
+                        elementalResonances.add(elementalResonanceToAdd);
+                    }
                 }
             }
         }
