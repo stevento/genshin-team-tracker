@@ -252,6 +252,52 @@ public class TeamTest {
     }
 
     @Test
+    public void testUpdateElementalResonanceProtectiveCanopyMoreThanOnce() {
+        assertTrue(testTeam.addCharacter(Character.AMBER));
+        assertTrue(testTeam.addCharacter(Character.CHONGYUN));
+        assertTrue(testTeam.addCharacter(Character.KEQING));
+        assertTrue(testTeam.addCharacter(Character.VENTI));
+        assertEquals(4, characterList.size());
+        assertEquals(Character.AMBER, characterList.get(0));
+        assertEquals(Character.CHONGYUN, characterList.get(1));
+        assertEquals(Character.KEQING, characterList.get(2));
+        assertEquals(Character.VENTI, characterList.get(3));
+
+        testTeam.updateElementalResonances();
+
+        assertEquals(1, resonanceList.size());
+        assertEquals(ElementalResonance.PROTECTIVE_CANOPY, resonanceList.get(0));
+
+        testTeam.updateElementalResonances();
+        assertEquals(1, resonanceList.size());
+        assertEquals(ElementalResonance.PROTECTIVE_CANOPY, resonanceList.get(0));
+    }
+
+    @Test
+    public void testUpdateElementalResonanceMoreThanOnce() {
+        assertTrue(testTeam.addCharacter(Character.GANYU));
+        assertTrue(testTeam.addCharacter(Character.CHONGYUN));
+        assertTrue(testTeam.addCharacter(Character.KEQING));
+        assertTrue(testTeam.addCharacter(Character.FISCHL));
+        assertEquals(4, characterList.size());
+        assertEquals(Character.GANYU, characterList.get(0));
+        assertEquals(Character.CHONGYUN, characterList.get(1));
+        assertEquals(Character.KEQING, characterList.get(2));
+        assertEquals(Character.FISCHL, characterList.get(3));
+
+        testTeam.updateElementalResonances();
+
+        assertEquals(2, resonanceList.size());
+        assertEquals(ElementalResonance.SHATTERING_ICE, resonanceList.get(0));
+        assertEquals(ElementalResonance.HIGH_VOLTAGE, resonanceList.get(1));
+
+        testTeam.updateElementalResonances();
+        assertEquals(2, resonanceList.size());
+        assertEquals(ElementalResonance.SHATTERING_ICE, resonanceList.get(0));
+        assertEquals(ElementalResonance.HIGH_VOLTAGE, resonanceList.get(1));
+    }
+
+    @Test
     public void testHasDuplicateElementsFalse() {
         assertTrue(testTeam.addCharacter(Character.AMBER));
         assertTrue(testTeam.addCharacter(Character.CHONGYUN));
