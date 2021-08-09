@@ -300,4 +300,9 @@ public class TeamTest {
 
         assertTrue(testTeam.hasDuplicateElements());
     }
+
+    @Test
+    public void testToString() {
+        assertEquals("Team", testTeam.toString());
+    }
 }

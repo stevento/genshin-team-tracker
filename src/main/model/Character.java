@@ -2,8 +2,6 @@ package model;
 
 import exceptions.IllegalCharacterException;
 
-import java.util.Locale;
-
 // Represents a character from Genshin Impact including name, element, weapon type, and rarity
 public enum Character {
     ALBEDO("Albedo", Element.GEO, WeaponType.SWORD, 5),
@@ -32,7 +30,7 @@ public enum Character {
     RAZOR("Razor", Element.ELECTRO, WeaponType.CLAYMORE, 4),
     ROSARIA("Rosaria", Element.CRYO, WeaponType.POLEARM, 4),
     SUCROSE("Sucrose", Element.ANEMO, WeaponType.CATALYST, 4),
-    TARTAGLIA("Targalia", Element.HYDRO, WeaponType.BOW, 5),
+    TARTAGLIA("Tartaglia", Element.HYDRO, WeaponType.BOW, 5),
     ANEMOTRAVELER("AnemoTraveler", Element.ANEMO, WeaponType.SWORD, 5),
     GEOTRAVELER("GeoTraveler", Element.GEO, WeaponType.SWORD, 5),
     ELECTROTRAVELER("ElectroTraveler", Element.ELECTRO, WeaponType.SWORD, 5),

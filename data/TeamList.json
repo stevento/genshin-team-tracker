@@ -1,14 +1,47 @@
-{
-  "teams": [
+{"teams": [
     {
-    "characters": [
-        "KEQING",
-        "AYAKA",
-        "ZHONGLI",
-        "VENTI"
-    ],
-    "elemental resonance(s)": [],
-    "elements": []
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
+    },
+    {
+        "characters": [],
+        "elemental resonance(s)": [],
+        "elements": []
     }
-  ]
-}
+]}

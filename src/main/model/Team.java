@@ -117,4 +117,10 @@ public class Team implements Writable {
         json.put("elemental resonance(s)", elementalResonances);
         return json;
     }
+
+    // EFFECTS: returns String representation of this
+    @Override
+    public String toString() {
+        return "Team";
+    }
 }
