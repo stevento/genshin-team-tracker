@@ -23,3 +23,13 @@ As a user, I want to ...
 - be able to save my list of teams to file
 - be able to load my list of teams from file
 
+## Phase 4: Task 2
+I have implemented the robust class option:
+> Test and design a class in your model package that is robust.  You must have at least one method that throws a 
+> checked exception.  You must have one test for the case where the exception is expected and another where the 
+> exception is not expected.
+
+The robust class is the **Character** class in the **model** package. The method that has a robust design and throws a 
+checked exception is **Character.find(String name)**. The tests for this class are in **test.model.CharacterTest** and 
+include a case where the exception is expected and another where the exception is not expected.
+

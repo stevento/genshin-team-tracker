@@ -3,7 +3,8 @@ package model;
 import exceptions.IllegalCharacterException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static model.Character.KEQING;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CharacterTest {
     Character testChar;
@@ -15,6 +16,7 @@ public class CharacterTest {
         } catch (IllegalCharacterException e) {
             fail("Did not expect IllegalCharacterException");
         }
+        assertEquals(KEQING, testChar);
     }
 
     @Test
@@ -25,5 +27,6 @@ public class CharacterTest {
         } catch (IllegalCharacterException e) {
             // all good
         }
+        assertNull(testChar);
     }
 }

@@ -66,7 +66,7 @@ public enum Character {
     public static Character find(String name) throws IllegalCharacterException {
         Character result = null;
         for (Character c : values()) {
-            if (c.name.toUpperCase().equals(name)) {
+            if (c.name.equalsIgnoreCase(name)) {
                 result = c;
             }
         }
