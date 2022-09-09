@@ -53,9 +53,12 @@ public class GenshinTrackerApp {
 
     // MODIFIES: this
     // EFFECTS: processes user command at the team list level
+    @SuppressWarnings("checkstyle:MethodLength")
     private void processTeamListCommand(String command) {
         if (command.equals("at")) {
-            teams.newTeam();
+            System.out.println("Please enter team name: ");
+            String name = input.next();
+            teams.newTeam(name);
             System.out.println("New team was added at index " + (teams.getTeams().size() - 1));
         } else if (command.equals("rt")) {
             askUserForIndex();

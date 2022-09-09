@@ -65,10 +65,12 @@ public class JsonReader {
     private void addTeam(TeamList tl, JSONObject jsonObject) throws IllegalCharacterException {
         Team team = new Team();
         JSONArray jsonArray = jsonObject.getJSONArray("characters");
+        String name = jsonObject.getString("name");
         for (Object json : jsonArray) {
             String nextCharacter = json.toString();
             addCharacter(team, nextCharacter);
         }
+        team.setName(name);
         team.updateElements();
         team.updateElementalResonances();
         tl.addTeam(team);

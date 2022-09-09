@@ -11,15 +11,17 @@ public class Team implements Writable {
     private List<Character> characters;
     private List<Element> elements;
     private List<ElementalResonance> elementalResonances;
+    private String name;
 
     // EFFECTS: constructs an empty team with no resonance and no reactions
     public Team() {
         this.characters = new ArrayList<Character>();
         this.elements = new ArrayList<Element>();
         this.elementalResonances = new ArrayList<ElementalResonance>();
+        this.name = "";
     }
 
-    // GETTERS
+    // GETTERS and SETTERS
     public List<Character> getCharacters() {
         return this.characters;
     }
@@ -30,6 +32,10 @@ public class Team implements Writable {
 
     public List<ElementalResonance> getElementalResonances() {
         return this.elementalResonances;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     // REQUIRES: character is valid and exists
@@ -126,12 +132,13 @@ public class Team implements Writable {
         json.put("characters", characters);
         json.put("elements", elements);
         json.put("elemental resonance(s)", elementalResonances);
+        json.put("name", name);
         return json;
     }
 
     // EFFECTS: returns String representation of this
     @Override
     public String toString() {
-        return "Team";
+        return name;
     }
 }

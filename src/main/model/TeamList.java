@@ -23,8 +23,10 @@ public class TeamList implements Writable {
 
     // MODIFIES: this
     // EFFECTS: create a new empty team and add it to the team list
-    public void newTeam() {
-        teams.add(new Team());
+    public void newTeam(String name) {
+        Team team = new Team();
+        team.setName(name);
+        teams.add(team);
     }
 
     // MODIFIES: this

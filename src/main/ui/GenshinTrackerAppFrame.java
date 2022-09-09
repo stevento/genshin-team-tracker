@@ -1,6 +1,7 @@
 package ui;
 
 import exceptions.IllegalCharacterException;
+import model.Character;
 import model.Team;
 import model.TeamList;
 import persistence.JsonReader;
@@ -29,8 +30,10 @@ public class GenshinTrackerAppFrame extends JFrame {
     private static final String SOUND_NAME = "./data/cymbals.wav";
 
     private TeamList teams;
-    private JList list;
-    private DefaultListModel listModel;
+    private JList teamList;
+    private DefaultListModel teamListModel;
+    private JList characterList;
+    private DefaultListModel characterListModel;
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
     private Clip clip;
@@ -38,8 +41,10 @@ public class GenshinTrackerAppFrame extends JFrame {
     private JButton deleteTeamButton;
     private JButton loadDataButton;
     private JButton saveDataButton;
+    private JButton viewTeamButton;
     private JMenuBar menuBar;
     private JPanel teamPanel;
+    private JPanel viewPanel;
 
     // Constructs main window
     // EFFECTS: sets up window in which Genshin Impact Team Tracker app will be used
@@ -48,7 +53,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         // Create and set up the window
         super("Genshin Impact Team Tracker");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500,600);
+        setSize(700,600);
         setLayout(null);
 
         // Instantiate JsonReader and JsonWriter
@@ -58,14 +63,16 @@ public class GenshinTrackerAppFrame extends JFrame {
         // Instantiate teams
         teams = new TeamList();
 
-        // Create list
-        makeJList();
+        // Create lists
+        makeTeamJList();
+        makeViewList();
 
         // Setup audio
         setupAudio();
 
-        // Create a scroll pane
-        JScrollPane listScrollPane = new JScrollPane(list);
+        // Create scroll panes
+        JScrollPane teamListScrollPane = new JScrollPane(teamList);
+        JScrollPane characterListScrollPane = new JScrollPane(characterList);
 
         // Create buttons
         setupButtons();
@@ -74,9 +81,13 @@ public class GenshinTrackerAppFrame extends JFrame {
         setupMenuBar();
 
         // Create a panel to display teams and add components to panel
-        setupTeamPanel(listScrollPane);
+        setupTeamPanel(teamListScrollPane);
+
+        // Create a panel for viewing team details
+        setupViewPanel(characterListScrollPane);
 
         // Add components to frame
+        add(viewPanel);
         add(teamPanel);
         add(menuBar);
 
@@ -84,13 +95,22 @@ public class GenshinTrackerAppFrame extends JFrame {
         setVisible(true);
     }
 
+    // EFFECTS: Sets up a JPanel to display team details
+    private void setupViewPanel(JScrollPane characterListScrollPane) {
+        viewPanel = new JPanel();
+        viewPanel.setBounds(350, 50, 300, 500);
+        viewPanel.setLayout(new BoxLayout(viewPanel, BoxLayout.LINE_AXIS));
+        viewPanel.add(characterListScrollPane, BorderLayout.CENTER);
+        viewPanel.add(new JSeparator(SwingConstants.VERTICAL));
+    }
+
     // MODIFIES: this
     // EFFECTS: Sets up a JPanel to display teams
-    private void setupTeamPanel(JScrollPane listScrollPane) {
+    private void setupTeamPanel(JScrollPane teamListScrollPane) {
         teamPanel = new JPanel();
-        teamPanel.setBounds(0,50,500,500);
+        teamPanel.setBounds(0,50,300,500);
         teamPanel.setLayout(new BoxLayout(teamPanel, BoxLayout.LINE_AXIS));
-        teamPanel.add(listScrollPane, BorderLayout.CENTER);
+        teamPanel.add(teamListScrollPane, BorderLayout.CENTER);
         teamPanel.add(new JSeparator(SwingConstants.VERTICAL));
     }
 
@@ -98,11 +118,12 @@ public class GenshinTrackerAppFrame extends JFrame {
     // EFFECTS: Sets up a menu bar with buttons
     private void setupMenuBar() {
         menuBar = new JMenuBar();
-        menuBar.setBounds(0, 0, 500, 50);
+        menuBar.setBounds(0, 0, 700, 50);
         menuBar.add(addTeamButton);
         menuBar.add(deleteTeamButton);
         menuBar.add(loadDataButton);
         menuBar.add(saveDataButton);
+        menuBar.add(viewTeamButton);
         menuBar.setBackground(Color.GRAY);
     }
 
@@ -113,6 +134,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         deleteTeamButton = new DeleteTeamButton();
         loadDataButton = new LoadDataButton();
         saveDataButton = new SaveDataButton();
+        viewTeamButton = new ViewTeamButton();
     }
 
     // MODIFIES: this
@@ -130,23 +152,33 @@ public class GenshinTrackerAppFrame extends JFrame {
 
     // MODIFIES: this
     // EFFECTS: Sets up team lists
-    private void makeJList() {
-        listModel = new DefaultListModel<>();
+    private void makeTeamJList() {
+        teamListModel = new DefaultListModel<>();
         for (Team t : teams.getTeams()) {
-            listModel.addElement(t);
+            teamListModel.addElement(t);
         }
-        list = new JList(listModel);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.setSelectedIndex(0);
-        list.setVisibleRowCount(-1);
+        teamList = new JList(teamListModel);
+        teamList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        teamList.setSelectedIndex(0);
+        teamList.setVisibleRowCount(-1);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Sets up view panel list
+    private void makeViewList() {
+        characterListModel = new DefaultListModel();
+        characterList = new JList(characterListModel);
+        characterList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        characterList.setSelectedIndex(0);
+        characterList.setVisibleRowCount(-1);
     }
 
     // MODIFIES: this
     // EFFECTS: Updates the teams within listModel
     public void updateTeams() {
-        listModel.clear();
+        teamListModel.clear();
         for (Team t : teams.getTeams()) {
-            listModel.addElement(t);
+            teamListModel.addElement(t);
         }
     }
 
@@ -164,7 +196,8 @@ public class GenshinTrackerAppFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == this) {
-                teams.newTeam();
+                String name = JOptionPane.showInputDialog("Enter team name");
+                teams.newTeam(name);
                 updateTeams();
             }
         }
@@ -184,7 +217,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == this) {
-                int index = list.getSelectedIndex();
+                int index = teamList.getSelectedIndex();
                 teams.removeTeam(index);
                 updateTeams();
             }
@@ -260,6 +293,26 @@ public class GenshinTrackerAppFrame extends JFrame {
             } catch (FileNotFoundException e) {
                 System.err.println("Unable to write to file: " + JSON_STORE);
             }
+        }
+    }
+
+    public class ViewTeamButton extends JButton implements ActionListener {
+
+        // EFFECTS: Constructs the "View team" button
+        public ViewTeamButton() {
+            super("View team");
+            addActionListener(this);
+            setFocusable(false);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            int index = teamList.getSelectedIndex();
+            for (Character c : teams.getTeams().get(index).getCharacters()) {
+                characterListModel.addElement(c);
+            }
+
         }
     }
 
