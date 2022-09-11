@@ -1,6 +1,7 @@
 package ui;
 
 import exceptions.IllegalCharacterException;
+import jdk.nashorn.internal.scripts.JO;
 import model.Character;
 import model.Team;
 import model.TeamList;
@@ -42,6 +43,7 @@ public class GenshinTrackerAppFrame extends JFrame {
     private JButton loadDataButton;
     private JButton saveDataButton;
     private JButton viewTeamButton;
+    private JButton addCharButton;
     private JMenuBar menuBar;
     private JPanel teamPanel;
     private JPanel viewPanel;
@@ -124,6 +126,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         menuBar.add(loadDataButton);
         menuBar.add(saveDataButton);
         menuBar.add(viewTeamButton);
+        menuBar.add(addCharButton);
         menuBar.setBackground(Color.GRAY);
     }
 
@@ -135,6 +138,7 @@ public class GenshinTrackerAppFrame extends JFrame {
         loadDataButton = new LoadDataButton();
         saveDataButton = new SaveDataButton();
         viewTeamButton = new ViewTeamButton();
+        addCharButton = new AddCharButton();
     }
 
     // MODIFIES: this
@@ -309,10 +313,36 @@ public class GenshinTrackerAppFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
 
             int index = teamList.getSelectedIndex();
+            characterListModel.clear();
             for (Character c : teams.getTeams().get(index).getCharacters()) {
                 characterListModel.addElement(c);
             }
 
+        }
+    }
+
+    public class AddCharButton extends JButton implements ActionListener {
+
+        public AddCharButton() {
+            super("Add Character");
+            addActionListener(this);
+            setFocusable(false);
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JComboBox<Character> comboBox = new JComboBox(Character.values());
+
+            JOptionPane.showMessageDialog(null, comboBox, "Character", JOptionPane.QUESTION_MESSAGE);
+
+            Team currentTeam = teams.getTeams().get(teamList.getSelectedIndex());
+            currentTeam.addCharacter(comboBox.getItemAt(comboBox.getSelectedIndex()));
+
+            int index = teamList.getSelectedIndex();
+            characterListModel.clear();
+            for (Character c : teams.getTeams().get(index).getCharacters()) {
+                characterListModel.addElement(c);
+            }
         }
     }
 
